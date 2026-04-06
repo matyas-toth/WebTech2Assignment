@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+  <span>Könyv Nyilvántartó</span>
+  <span class="spacer"></span>
+  <span>Hello, {{ authService.currentUser()?.username }}</span>
+  <button mat-icon-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <div class="header-actions">
+    <h2>Saját könyveim</h2>
+    <button mat-raised-button color="accent" (click)="openAddBookDialog()">
+      <mat-icon>add</mat-icon> Új könyv
+    </button>
+  </div>
+
+  <div class="book-grid">
+    <mat-card *ngFor="let book of books" class="book-card">
+      <mat-card-header>
+        <mat-card-title>{{ book.title }}</mat-card-title>
+        <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Oldalszám:</strong> {{ book.pages }}</p>
+        <p><strong>Státusz:</strong> 
+          <span class="status-badge" [ngClass]="book.status.toLowerCase()">
+            {{ book.status === 'WANT_TO_READ' ? 'El akarom olvasni' : 
+               book.status === 'READING' ? 'Olvasom épp' : 'Elolvastam' }}
+          </span>
+        </p>
+        
+        <div class="status-actions">
+          <button mat-button color="primary" [disabled]="book.status === 'WANT_TO_READ'" (click)="updateStatus(book, 'WANT_TO_READ')">Várólistás</button>
+          <button mat-button color="primary" [disabled]="book.status === 'READING'" (click)="updateStatus(book, 'READING')">Olvasom</button>
+          <button mat-button color="primary" [disabled]="book.status === 'READ'" (click)="updateStatus(book, 'READ')">Elolvasva</button>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-icon-button color="primary" (click)="openEditBookDialog(book)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteBook(book)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div *ngIf="books.length === 0" class="empty-state">
+      <h3>Nincs egyetlen könyv sem a listádon!</h3>
+      <p>Kattints az "Új könyv" gombra, hogy rögzíts egyet.</p>
+    </div>
+  </div>
+</div>

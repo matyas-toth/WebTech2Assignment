@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Könyv szerkesztése' : 'Új könyv hozzáadása' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="bookForm" class="dialog-form">
+    <mat-form-field appearance="outline" fullWidth>
+      <mat-label>Cím</mat-label>
+      <input matInput formControlName="title" placeholder="Pl.: Harry Potter">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fullWidth>
+      <mat-label>Szerző</mat-label>
+      <input matInput formControlName="author" placeholder="Pl.: J.K. Rowling">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fullWidth>
+      <mat-label>Oldalszám</mat-label>
+      <input matInput type="number" formControlName="pages" min="1">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fullWidth>
+      <mat-label>Olvasási státusz</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="WANT_TO_READ">El akarom olvasni (Várólistás)</mat-option>
+        <mat-option value="READING">Olvasom épp</mat-option>
+        <mat-option value="READ">Elolvastam</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Mégse</button>
+  <button mat-raised-button color="primary" [disabled]="bookForm.invalid" (click)="onSubmit()">
+    Mentés
+  </button>
+</mat-dialog-actions>

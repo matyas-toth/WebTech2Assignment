@@ -1,0 +1,97 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header-actions h2 {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+mat-card-content {
+  flex-grow: 1;
+  padding-top: 16px;
+}
+
+mat-card-content p {
+  margin: 8px 0;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status-badge.want_to_read {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.status-badge.reading {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-badge.read {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-actions {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.status-actions button {
+  font-size: 0.8rem;
+  flex: 1;
+  min-width: 85px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 64px 0;
+  background: #fafafa;
+  border-radius: 16px;
+  border: 2px dashed #ddd;
+}
