@@ -8,6 +8,7 @@ export interface IBook extends Document {
   author: string;
   pages: number;
   status: BookStatus;
+  rating: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -39,6 +40,12 @@ const bookSchema: Schema = new Schema(
       type: String,
       enum: ['WANT_TO_READ', 'READING', 'READ'],
       default: 'WANT_TO_READ',
+    },
+    rating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
     },
   },
   {

@@ -30,6 +30,14 @@
           </span>
         </p>
 
+        <div class="rating-container">
+          <mat-icon *ngFor="let star of [1,2,3,4,5]" 
+                    [ngClass]="{'filled': book.rating >= star}"
+                    (click)="rateBook(book, star)">
+            {{ book.rating >= star ? 'star' : 'star_border' }}
+          </mat-icon>
+        </div>
+        
         <div class="status-actions">
           <button mat-button color="primary" [disabled]="book.status === 'WANT_TO_READ'"
             (click)="updateStatus(book, 'WANT_TO_READ')">Várólistás</button>

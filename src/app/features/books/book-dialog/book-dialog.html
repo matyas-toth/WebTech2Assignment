@@ -25,6 +25,18 @@
         <mat-option value="READ">Elolvastam</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field appearance="outline" fullWidth>
+      <mat-label>Értékelés (1-5)</mat-label>
+      <mat-select formControlName="rating">
+        <mat-option [value]="0">Nincs értékelve</mat-option>
+        <mat-option [value]="1">1 csillag</mat-option>
+        <mat-option [value]="2">2 csillag</mat-option>
+        <mat-option [value]="3">3 csillag</mat-option>
+        <mat-option [value]="4">4 csillag</mat-option>
+        <mat-option [value]="5">5 csillag</mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 

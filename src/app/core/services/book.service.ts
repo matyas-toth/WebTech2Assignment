@@ -11,6 +11,7 @@ export interface Book {
   author: string;
   pages: number;
   status: BookStatus;
+  rating: number;
   createdAt?: string;
   updatedAt?: string;
 }

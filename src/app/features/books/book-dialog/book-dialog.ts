@@ -30,7 +30,8 @@ export class BookDialog {
       title: [data?.book?.title || '', Validators.required],
       author: [data?.book?.author || '', Validators.required],
       pages: [data?.book?.pages || '', [Validators.required, Validators.min(1)]],
-      status: [data?.book?.status || 'WANT_TO_READ', Validators.required]
+      status: [data?.book?.status || 'WANT_TO_READ', Validators.required],
+      rating: [data?.book?.rating || 0, [Validators.min(0), Validators.max(5)]]
     });
   }
 

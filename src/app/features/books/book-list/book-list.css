@@ -37,7 +37,7 @@
 
 .book-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 mat-card-content {
@@ -69,6 +69,30 @@ mat-card-content p {
 .status-badge.read {
   background-color: #e8f5e9;
   color: #2e7d32;
+}
+
+.rating-container {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 16px 0;
+}
+
+.rating-container mat-icon {
+  cursor: pointer;
+  color: #d1d5db;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.rating-container mat-icon.filled {
+  color: #facc15;
+}
+
+.rating-container mat-icon:hover {
+  color: #fde047;
 }
 
 .status-actions {

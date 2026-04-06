@@ -56,6 +56,12 @@ export class BookList implements OnInit {
     }
   }
 
+  rateBook(book: Book, rating: number) {
+    if (book._id) {
+      this.bookService.updateBook(book._id, { rating }).subscribe(() => this.loadBooks());
+    }
+  }
+
   logout() {
     this.authService.logout();
   }

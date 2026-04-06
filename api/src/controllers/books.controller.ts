@@ -13,7 +13,7 @@ export const getBooks = async (req: Request, res: Response): Promise<void> => {
 
 export const addBook = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { title, author, pages, status } = req.body;
+    const { title, author, pages, status, rating } = req.body;
 
     if (!title || !author || !pages) {
       res.status(400).json({ message: 'Title, author, and pages are required.' });
@@ -43,6 +43,7 @@ export const addBook = async (req: Request, res: Response): Promise<void> => {
       author,
       pages,
       status: validatedStatus,
+      rating: rating || 0,
     });
 
     const savedBook = await newBook.save();
@@ -56,7 +57,7 @@ export const addBook = async (req: Request, res: Response): Promise<void> => {
 export const updateBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const { title, author, pages, status } = req.body;
+    const { title, author, pages, status, rating } = req.body;
 
     const book = await Book.findOne({ _id: id, userId: req.userId });
     if (!book) {
@@ -81,6 +82,14 @@ export const updateBook = async (req: Request, res: Response): Promise<void> => 
         return;
       }
       book.status = status as BookStatus;
+    }
+
+    if (rating !== undefined) {
+      if (typeof rating !== 'number' || rating < 0 || rating > 5) {
+        res.status(400).json({ message: 'Rating must be a number between 0 and 5.' });
+        return;
+      }
+      book.rating = rating;
     }
 
     const updatedBook = await book.save();
