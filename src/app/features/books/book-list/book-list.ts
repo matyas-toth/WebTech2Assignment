@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +17,7 @@ import { BookDialog } from '../book-dialog/book-dialog';
   styleUrl: './book-list.css'
 })
 export class BookList implements OnInit {
-  books: Book[] = [];
+  books = signal<Book[]>([]);
   bookService = inject(BookService);
   authService = inject(AuthService);
   dialog = inject(MatDialog);
@@ -27,7 +27,7 @@ export class BookList implements OnInit {
   }
 
   loadBooks() {
-    this.bookService.getBooks().subscribe(data => this.books = data);
+    this.bookService.getBooks().subscribe(data => this.books.set(data));
   }
 
   openAddBookDialog() {
